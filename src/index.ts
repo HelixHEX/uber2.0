@@ -7,8 +7,8 @@ import cron from "cron";
 import morgan from "morgan";
 // const path = require("path");
 
-const rides = require('./routes/rides')
-const user = require('./routes/user')
+const rides = require("./routes/rides");
+const user = require("./routes/user");
 
 const main = () => {
   const app = express();
@@ -21,13 +21,17 @@ const main = () => {
   // app.use(express.static(path.join(__dirname, "../build")));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-  
-  app.use('/api/rides', rides)
-  app.use('/api/user', user)
 
+  app.use("/api/rides", rides);
+  app.use("/api/user", user);
+
+  app.get("/", (_, res: express.Response) => {
+    res.send("Hello world");
+  });
+  
   const cronJob = new cron.CronJob("0 */25 * * * *", () => {
-    fetch("https://travelroulette.herokuapp.com/")
-      .then((res:any) =>
+    fetch("https://uber2.0.herokuapp.com/")
+      .then((res: any) =>
         console.log(`response-ok: ${res.ok}, status: ${res.status}`)
       )
       .catch((error: any) => console.log(error));
