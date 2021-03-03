@@ -23,7 +23,7 @@ const main = () => {
         res.send("Hello world");
     });
     const cronJob = new cron_1.default.CronJob("0 */25 * * * *", () => {
-        node_fetch_1.default("https://uber2.0.herokuapp.com/")
+        node_fetch_1.default("https://uber2-0.herokuapp.com/")
             .then((res) => console.log(`response-ok: ${res.ok}, status: ${res.status}`))
             .catch((error) => console.log(error));
     });
