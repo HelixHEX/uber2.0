@@ -31,7 +31,8 @@ router.get("/allrides", (req, res) => {
                 state: data.results[i].State,
                 address: data.results[i].Address,
                 street: data.results[i].Street,
-                city: data.results[i].PuFrom
+                city: data.results[i].PuFrom,
+                passengers: genNum(1, 5)
             });
         }
         res.send({ places }).status(200);
