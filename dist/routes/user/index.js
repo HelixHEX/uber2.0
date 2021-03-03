@@ -29,7 +29,6 @@ router.get("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* 
             userExists = true;
         }
     }
-    console.log(users);
     if (userExists) {
         res.send({ error: "User exists" }).status(400);
     }

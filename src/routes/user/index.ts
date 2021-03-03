@@ -22,7 +22,6 @@ router.get("/signup", async (req: express.Request, res: express.Response) => {
       userExists = true;
     }
   }
-  console.log(users)
   if (userExists) {
     res.send({ error: "User exists" }).status(400);
   } else {
