@@ -19,7 +19,7 @@ router.get("/allrides", (req: express.Request, res: express.Response) => {
   if (user) {
     limit = parseInt(limit);
 
-    let places = [];
+    let places = [] as any
 
     const genNum = (min: number, max: number) => {
       const num = Math.floor(Math.random() * max) + min;
@@ -27,18 +27,18 @@ router.get("/allrides", (req: express.Request, res: express.Response) => {
     };
 
     let ranum = genNum(0, data.results.length - limit);
-    console.log(data.results.length);
-    for (var i = ranum; i < ranum + limit; i++) {
+    console.log(ranum);
+    for (var i = ranum; i < (ranum + limit); i++) {
       places.push({
         time: data.results[i].Time,
         state: data.results[i].State,
         address: data.results[i].Address,
         street: data.results[i].Street,
-        city: data.resutls[i].PuFrom
+        city: data.results[i].PuFrom
       });
     }
 
-    res.send({ ranum, length: places.length, places }).status(200)
+    res.send({ places }).status(200)
   } else {
     res.send({error: "Not logged in"}).status(400);
   }
